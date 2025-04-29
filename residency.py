@@ -26,8 +26,8 @@ GREEN=colors[2]
 #Number of Frames for each molecule
 MOL1 = []
 MOL2 = []
-# Time in ns between the frames of trajectory
-DT=25/1000
+# Time in ps between the frames of trajectory
+DT=60
 
 frames = 1
 for filename in glob.glob('1_*.log'):
@@ -65,7 +65,7 @@ plt.hist([MOL1,MOL2],density=True, bins=20, histtype='bar', color=[PURPLE,GRAY],
 
 plt.legend()
 
-plt.xlabel(r'residency time / ns')
+plt.xlabel(r'residency time / ps')
 plt.ylabel(r'probability density')
 #plt.savefig(r'../plot.png')
 plt.show()
