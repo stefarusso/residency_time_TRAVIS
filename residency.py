@@ -29,7 +29,6 @@ MOL2 = []
 # Time in ps between the frames of trajectory
 DT=60
 
-frames = 1
 for filename in glob.glob('1_*.log'):
     with open(os.path.join(os.getcwd(), filename), 'r') as f:
         dati = pd.read_csv(filename,header=None)
@@ -37,7 +36,6 @@ for filename in glob.glob('1_*.log'):
         unici = dati.stack().unique()
         tmp = [ dati.isin([i]).sum().sum()  for i in unici ]
         MOL1 = np.append(MOL1, tmp)
-        frames = frames + 1
 
 
 for filename in glob.glob('2_*.log'):
@@ -48,9 +46,7 @@ for filename in glob.glob('2_*.log'):
         tmp = [ dati.isin([i]).sum().sum()  for i in unici ]
         MOL2 = np.append(MOL2, tmp)
 
-#every frame is between 25ps
-#AL2=AL2*25/1000 #ns
-#AL4=AL4*25/1000 #ns
+#every frame is between DT frames
 MOL1 = MOL1*DT
 MOL2 = MOL2*DT
 
